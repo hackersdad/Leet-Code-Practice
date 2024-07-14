@@ -23,15 +23,34 @@ Explanation: There is no cycle in the linked list.
 
 """
 
+# class Solution:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
+#         temp = head
+#         parsed = {}
+#         while temp is not None:
+#             if temp in parsed:
+#                 return True
+#             parsed[temp] = ''
+#             temp = temp.next
+#         return False
+        
+
+# Floyd's Algorithm for finding the cycle
+# works by having two pointers, one slow and one fast, fast moves two units at a time while slow moves one unit at a time
+# if at some point slow meets fast then it has a cycle 
+
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        temp = head
-        parsed = {}
-        while temp is not None:
-            if temp in parsed:
-                return True
-            parsed[temp] = ''
-            temp = temp.next
-        return False
         
+        if head is None or head.next is None:
+            return False
+        slow = head
+        fast = head
+        while fast and slow and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast:
+                return True
+        return False 
             
