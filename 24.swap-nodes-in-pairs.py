@@ -38,9 +38,6 @@ class Solution:
             # After Swap
             prev = p1
             p1 = p1.next
-            if p1:
-                p2 = p1.next
-            else:
-                p2 = None
+            p2 = p1.next if p1 else None
             
         return dummy.next
